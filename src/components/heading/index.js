@@ -1,9 +1,11 @@
 import React from 'react';
 import { Text } from 'react-native-web';
 
-// import default typography styles
+// import styller HOC
 import styller from 'components/styller';
-import typography from 'assets/styles/typography';
+
+// import local styles
+import styles from './styles';
 
 class Heading extends React.Component {
   render() {
@@ -11,4 +13,4 @@ class Heading extends React.Component {
   }
 }
 
-export default styller(typography)(Heading);
+export default styller(styles)(Heading);

@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "build": "webpack --colors --progress -p",
-    "web": "webpack-dev-server --colors --progress -w"
+    "preweb": "yarn install",
+    "web": "webpack-dev-server --colors --progress -w --open"
   },
   "dependencies": {
     "prop-types": "^15.6.1",

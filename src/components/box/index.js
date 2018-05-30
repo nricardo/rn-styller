@@ -1,9 +1,11 @@
 import React from 'react';
 import { View } from 'react-native-web';
 
-// import default button styles
+// import styller HOC
 import styller from 'components/styller';
-import styles from 'assets/styles/box';
+
+// import local styles
+import styles from './styles';
 
 class Box extends React.Component {
   render() {

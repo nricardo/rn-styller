@@ -7,25 +7,10 @@ import { COLORS } from 'assets/styles/_variables';
  * Typography
  * --------------------------------------------------------------------------
  */
-// const DEFAULTS = {
-//   color: COLORS.$primary,
-//   size: 16,
-//   bold: false,
-//   muted: false,
-//   decoration: 'none',
-// };
-
-const _Text = (props) => {
+const Text = (props) => {
   const {
     // colors...
     color = undefined,
-    muted = false,
-    primary = false,
-    secondary = false,
-    info = false,
-    success = false,
-    danger = false,
-    warning = false,
 
     // font stuff...
     size = 16,
@@ -33,24 +18,17 @@ const _Text = (props) => {
     // text transforms...
     bold = false,
     decoration = 'none',
-  } = props; //Object.assign({}, DEFAULTS, props);
 
-  // define color to apply
-  let _color = COLORS.$primary;
-  if (muted) _color = COLORS.$muted;
-  if (primary) _color = COLORS.$primary;
-  if (secondary) _color = COLORS.$secondary;
-  if (info) _color = COLORS.$info;
-  if (success) _color = COLORS.$success;
-  if (danger) _color = COLORS.$danger;
-  if (warning) _color = COLORS.$warning;
+    // type of text...
+    type = 'primary',
+  } = props;
 
   return {
     // inject shared styles
     ...SHARED(props),
 
     // define base styles for this component
-    color: color ? color : _color,
+    color: color || COLORS[`$${type}`]|| COLORS[`$primary`],
     fontFamily: 'Roboto',
     fontSize: size,
     fontWeight: bold ? 'bold' : 'normal',
@@ -58,15 +36,16 @@ const _Text = (props) => {
   };
 };
 
-const _Heading = (props) => {
+const Heading = (props) => {
   props = Object.assign({}, {
     bold: true,
     size: 24,
   }, props);
-  return _Text(props);
+
+  return Text(props);
 };
 
-export default (props) => StyleSheet.create({
-  Text: _Text(props),
-  Heading: _Heading(props),
-});
+export {
+  Text,
+  Heading,
+};

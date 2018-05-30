@@ -3,6 +3,11 @@
  * all base components are defined in this file.
  */
 const COLORS = {
+  // gray colors...
+  $default: '#777',
+  $disabled: '#CCC',
+
+  // default theme palette...
   $primary: '#222E50',
   $secondary: '#007991',
   $muted: '#778DA9',

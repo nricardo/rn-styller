@@ -1,17 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { StyleSheet } from 'react-native-web';
 
-const styller = (defaults) => (StylledComponent) => (
-  class extends React.Component {
-    constructor(props) {
-      super(props);
-
-      // build default style from props
-      this.styles = defaults(this.props);
-    }
-
+const styller = (styles) => (StylledComponent) => (
+  class extends Component {
     render() {
+      const { style, ...props } = this.props;
+
+      console.log('Rendering "%s" component...', StylledComponent.name);
+
       return (
-        <StylledComponent style={this.styles[StylledComponent.name]} {...this.props} />
+        <StylledComponent style={[styles(props), style]} {...props} />
       );
     }
   }

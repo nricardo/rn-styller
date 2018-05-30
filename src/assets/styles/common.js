@@ -7,23 +7,41 @@ import { StyleSheet } from 'react-native-web';
  * These incluse things like scaffholding, layout and other common properties.
  * ------------------------------------------------------------------------------
  */
-export default (props) => {
+export default (props = {}) => {
   const {
-    m, mt, mb, ml, mr,
-    p, pt, pb, pl, pr,
-  } = Object.assign({}, props);
+    b, bt, bb, bl, br, // borders
+    m, mt, mb, ml, mr, mh, mv, // margins
+    p, pt, pb, pl, pr, ph, pv, // paddings
+    disabled = false,
+    shadow = false, // shadows on/off
+  } = props;
 
   return {
+    // borders...
+    borderTopColor: bt || b,
+    borderTopWidth: bt || b ? 1 : 0,
+    borderLeftColor: bl || b,
+    borderLeftWidth: bl || b ? 1 : 0,
+    borderRightColor: br || b,
+    borderRightWidth: br || b ? 1 : 0,
+    borderBottomColor: bb || b,
+    borderBottomWidth: bb || b ? 1 : 0,
+
     // margins...
-    marginTop: m ? m : mt,
-    marginLeft: m ? m : ml,
-    marginRight: m ? m : mr,
-    marginBottom: m ? m : mb,
+    marginTop: mt || mv || m,
+    marginLeft: ml || mh || m,
+    marginRight: mr || mh || m,
+    marginBottom: mb || mv || m,
 
     // paddings...
-    paddingTop: p ? p : pt,
-    paddingLeft: p ? p : pl,
-    paddingRight: p ? p : pr,
-    paddingBottom: p ? p : pb,
+    paddingTop: pt || pv || p,
+    paddingLeft: pl || ph || p,
+    paddingRight: pr || ph || p,
+    paddingBottom: pb || pv || p,
+
+    // shadows...
+    shadowColor: shadow && !disabled ? '#777' : null,
+    shadowRadius: shadow && !disabled ? 2 : 0,
+    shadowOffset: shadow && !disabled ? { width: 1, height: 1 } : null,
   }
 };
